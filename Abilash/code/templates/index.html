@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sparkle Edu</title>
+    <!-- Add the Font Awesome CSS link for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Add the custom CSS file link -->
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+     <!-- Navigation bar -->
+    <div class="navbar">
+        <!-- Logo -->
+        <img src="{{ url_for('static', filename='Logo.png') }}" alt="Logo 1" class="logo">
+        <!-- Navigation tabs -->
+        <div class="nav-tabs">
+            <a href="#">Home</a>
+            <a href="http://127.0.0.1:5000/" id="stressDetectionLink">Stress Detection</a>
+            <a href="http://127.0.0.1:5999/">AI ChatBot</a>
+            <a href="http://127.0.0.1:3999/">Document Reconstruction</a>
+            {% set login_page_path = "../../Easy Authentication/ui/ui/login.html" %}
+<a href="{{ login_page_path }}">Link to Login Page</a>
+
+            <a href="#">Login</a>
+            <a href="#">Contact us</a>
+        </div>
+    </div>
+
+     <br><hr>
+
+    <!-- Header -->
+    <div class="header">
+        Stress & Drowsiness Detection
+    </div>
+
+    <!-- Video feed container -->
+     <div class="camera-frame">
+        <div class="video-container">
+            <img id="video_feed" src="{{ url_for('video_feed') }}" alt="Video Stream">
+            <p id="emotion"></p>
+            <p id="eyeState"></p>
+
+            <!-- Add the "End Call" button with a Font Awesome icon -->
+            <button id="endCallButton" onclick="endCall()">
+                <i class="fas fa-phone-slash"></i>
+            </button>
+        </div>
+
+        <div class="csv-button-container">
+         <!-- Download CSV button -->
+            <button id="downloadCsvButton" onclick="downloadCsv()">
+                <i class="fas fa-download"></i> Download Stress Report
+            </button>
+        </div>
+
+        <div class="csv-button-container">
+            <button id="downloadAttendanceReportButton" onclick="downloadAttendanceReport()">
+                <i class="fas fa-download"></i> Download Attendance Report
+            </button>
+        </div>
+
+        <div id="stressPercentage"></div>
+
+         <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="copyright">
+                    &copy; 2023 Sparkle Edu. All rights reserved.
+                </div>
+            </div>
+        </footer>
+     </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

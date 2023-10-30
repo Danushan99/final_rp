@@ -1,0 +1,11 @@
+LOGGER_LEVEL: DEBUG
+
+# Servie Host Address
+HOST: 
+# Port Number
+PORT: 3000
+
+GCP_STORAGE_PROJECT_NAME: moneta-lk
+# Temp folder
+TEMP_FOLDER: /tmp/
+

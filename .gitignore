@@ -1,0 +1,26 @@
+# Ignore Python byte-compiled files
+__pycache__/
+*.pyc
+
+# Ignore virtual environment files (if using virtualenv or venv)
+venv/
+env/
+myenv/
+*.env
+Abilash/model
+models/
+
+
+# Ignore log files and backup files
+*.log
+*.bak
+
+# Ignore user-specific files
+*.swp
+*.swo
+.DS_Store
+
+# Ignore pipenv and poetry specific files
+Pipfile
+Pipfile.lock
+poetry.lock

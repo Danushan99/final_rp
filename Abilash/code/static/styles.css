@@ -1,0 +1,193 @@
+/* styles.css */
+
+/* Set a background color for the header (Zoom-like blue) */
+.header {
+    background-color: #0f75bd;
+    color: #ffffff;
+    text-align: center;
+    padding: 15px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Video feed container styles */
+.video-container {
+    position: relative;
+    width: 760px;
+    height: 580px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    background-color: #000;
+    overflow: hidden;
+}
+
+
+/* Video feed styles */
+#video_feed {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Stress and emotion information styles */
+#emotion,
+#eyeState {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* End Call button styles */
+#endCallButton {
+    background-color: #ff3b30; /* Red color */
+    color: #ffffff;
+    font-size: 20px;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+#endCallButton:hover {
+    background-color: #cc221d; /* Darker red color on hover */
+}
+
+
+/* Navigation bar styles */
+.navbar {
+    background-color: #0f75bd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+/* Logo styles */
+.logo {
+    width: 50px;
+    height: 50px;
+}
+
+/* Navigation tabs styles */
+.nav-tabs a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    margin: 0 15px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+.nav-tabs a:hover {
+    background-color: #084882; /* Darker blue color on hover */
+}
+
+.camera-frame {
+    background-image: url('Background.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    width: 100%;
+    height: 80vh;
+}
+
+/* Footer styles */
+.footer {
+    background-color: #0f75bd;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+/* Generate Report button styles */
+#generateReportButton {
+    background-color: #007bff; /* Blue color */
+    color: #ffffff;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    margin: 20px auto;
+    display: block;
+    transition: background-color 0.2s ease;
+}
+
+#generateReportButton:hover {
+    background-color: #0056b3; /* Darker blue color on hover */
+}
+
+.csv-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Style for the Download CSV button */
+#downloadCsvButton {
+  background-color: #007bff; /* Set the background color */
+  color: white; /* Set the text color */
+  padding: 10px 20px; /* Set padding (vertical, horizontal) */
+  border: none; /* Remove the border */
+  border-radius: 5px; /* Add rounded corners */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: background-color 0.3s; /* Add a smooth transition effect */
+}
+
+/* Hover effect for the Download CSV button */
+#downloadCsvButton:hover {
+  background-color: #0056b3; /* Change the background color on hover */
+}
+
+#stressPercentage {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 24px;
+    color: #0056b3; /* Change the color as needed */
+  }
+
+
+/* Style for the Download Attendance  button */
+#downloadAttendanceReportButton {
+  background-color: #007bff; /* Set the background color */
+  color: white; /* Set the text color */
+  padding: 10px 20px; /* Set padding (vertical, horizontal) */
+  border: none; /* Remove the border */
+  border-radius: 5px; /* Add rounded corners */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: background-color 0.3s; /* Add a smooth transition effect */
+}
+
+/* Hover effect for the Download CSV button */
+#downloadAttendanceReportButton:hover {
+  background-color: #0056b3; /* Change the background color on hover */
+}
+
+/* Style for the Download CSV button */
+#downloadAttendanceReportButton {
+  background-color: #007bff; /* Set the background color */
+  color: white; /* Set the text color */
+  padding: 10px 20px; /* Set padding (vertical, horizontal) */
+  border: none; /* Remove the border */
+  border-radius: 5px; /* Add rounded corners */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: background-color 0.3s; /* Add a smooth transition effect */
+}
+
+/* Hover effect for the Download CSV button */
+#downloadAttendanceReportButton:hover {
+  background-color: #0056b3; /* Change the background color on hover */
+}

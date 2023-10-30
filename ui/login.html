@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css">
+  <title>Biometric Verification</title>
+</head>
+
+<body>
+
+  <div class="navbar">
+
+    <img src="Logo.png" alt="Logo 1" class="logo">
+
+    <div class="nav-tabs">
+      <a href="#">Home</a>
+      <a href="#">Stress Detection</a>
+      <a href="#">AI ChatBot</a>
+      <a href="#">Document Reconstruction</a>
+      <a href="#">Login</a>
+      <a href="#">Contact us</a>
+    </div>
+  </div>
+  <div style="
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+      ">
+    <div style="text-align: center">
+      <h1>Biometric Verification</h1>
+      <div style="position: relative">
+        <video id="camera-feed" autoplay style="width: 100%; max-width: 480px; border: 1px solid #ccc"></video>
+        <button id="capture-btn" style="
+              position: absolute;
+              bottom: 10px;
+              left: 50%;
+              transform: translateX(-50%);
+              background-color: #007bff;
+              color: #fff;
+              border: none;
+              padding: 8px 16px;
+              cursor: pointer;
+            ">
+          Login by Capture Image
+        </button>
+      </div>
+
+      <div id="result-container" style="margin-top: 20px; display: none">
+        <img id="captured-image" style="
+              max-width: 100%;
+              border: 1px solid #ccc;
+              width: 600px;
+              height: 600px;
+            " />
+        <p id="result-text"></p>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const cameraFeed = document.getElementById("camera-feed");
+      const captureBtn = document.getElementById("capture-btn");
+      const resultContainer = document.getElementById("result-container");
+      const capturedImage = document.getElementById("captured-image");
+      const resultText = document.getElementById("result-text");
+
+      let stream;
+      let imageCapture;
+
+      async function startCamera() {
+        try {
+          const constraints = {
+            video: {
+              width: { ideal: 640 },
+              height: { ideal: 480 },
+            },
+          };
+
+          stream = await navigator.mediaDevices.getUserMedia(constraints);
+          cameraFeed.srcObject = stream;
+          const track = stream.getVideoTracks()[0];
+          imageCapture = new ImageCapture(track);
+        } catch (error) {
+          console.error("Error accessing camera:", error);
+        }
+      }
+
+      async function sendImageToAPI(blob) {
+        try {
+
+          const fileName = localStorage.getItem("DOWNLOADED_IMAGE");
+
+          const url = "http://127.0.0.1:3000/detect/gender";
+          const body = {
+            img: `/Users/dhanu/Downloads/${fileName}`,
+          };
+
+          const options = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(body),
+          };
+
+          fetch(url, options)
+            .then((response) => response.json())
+            .then((data) => {
+              console.log("Response:", data);
+              resultText.textContent = `Gender: ${data.gender}, Age: ${data.age}`;
+              capturedImage.src = URL.createObjectURL(blob);
+              console.log("capturedImage.src : ", capturedImage.src);
+              resultContainer.style.display = "block";
+              const age = data.age;
+
+              //portal navigation 
+              if (age == '15-20') {
+
+                window.location.href = "student1.html";
+              } else if (age == '20-25') {
+
+                window.location.href = "student2.html";
+              }
+              // else if (age == '25-30') {
+
+              //   window.location.href = "test.html";
+              // }
+              else {
+
+                window.location.href = "teaching.html";
+              }
+            }
+            )
+            .catch((error) => {
+              console.error("Error:", error);
+
+            });
+
+
+        } catch (error) {
+          console.error("Error sending image to API:", error);
+        }
+      }
+
+
+
+      captureBtn.addEventListener("click", async () => {
+        try {
+          const blob = await imageCapture.takePhoto();
+
+          // Create image element 
+          const img = new Image();
+          img.src = URL.createObjectURL(blob);
+
+          img.onload = () => {
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+
+            // Set canvas to 600x600 pixels
+            canvas.width = 600;
+            canvas.height = 600;
+            ctx.drawImage(img, 0, 0, 600, 600);
+
+            // Convert the canvas 
+            canvas.toBlob(async (resizedBlob) => {
+              const imageUrl = URL.createObjectURL(resizedBlob);
+
+              const anchor = document.createElement("a");
+              anchor.href = imageUrl;
+
+              const currentDate = new Date();
+              const filename =
+                currentDate.toISOString().replace(/[:.]/g, "") + ".jpg";
+
+              anchor.download = filename;
+
+              localStorage.setItem("DOWNLOADED_IMAGE", filename);
+
+              anchor.style.display = "none";
+              document.body.appendChild(anchor);
+              anchor.click();
+              URL.revokeObjectURL(imageUrl);
+
+
+              sendImageToAPI(resizedBlob);
+            }, "image/jpeg");
+
+
+            URL.revokeObjectURL(img.src);
+          };
+        } catch (error) {
+          console.error("Error capturing image:", error);
+        }
+      });
+
+
+      startCamera();
+    });
+  </script>
+
+
+  </div>
+</body>
+
+</html>
