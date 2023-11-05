@@ -16,12 +16,12 @@
 
     <div class="nav-tabs">
       <a href="#">Home</a>
-      <a href="#">Stress Detection</a>
-      <a href="#">AI ChatBot</a>
-      <a href="#">Document Reconstruction</a>
-      <a href="#">Login</a>
-      <a href="#">Contact us</a>
-    </div>
+      <a href="http://127.0.0.1:4000/">Stress Detection</a>
+
+      <a href="http://127.0.0.1:3998/">Document Reconstruction</a>
+      <a href="/file:///Users/dhanu/Desktop/merg/flask/ui/login.html">Login</a>
+      <a href="http://127.0.0.1:5999">Chat bot</a>
+  </div>
   </div>
   <div style="
         font-family: Arial, sans-serif;
@@ -95,7 +95,7 @@
 
           const fileName = localStorage.getItem("DOWNLOADED_IMAGE");
 
-          const url = "http://127.0.0.1:3000/detect/gender";
+          const url = "http://127.0.0.1:4000/detect/gender";
           const body = {
             img: `/Users/dhanu/Downloads/${fileName}`,
           };
@@ -124,7 +124,7 @@
                 window.location.href = "student1.html";
               } else if (age == '20-25') {
 
-                window.location.href = "student2.html";
+                window.location.href = "student1.html";
               }
               // else if (age == '25-30') {
 

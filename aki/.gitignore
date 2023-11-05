@@ -1,0 +1,14 @@
+# Virtual environments
+venv/
+.venv/
+
+# Byte-compiled files
+__pycache__/
+
+# Logs and databases
+*.log
+*.sqlite3
+
+# OS or editor-specific files
+.DS_Store
+.vscode/

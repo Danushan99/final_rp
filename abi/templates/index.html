@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sparkle Edu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="static/Assets/styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+
+</head>
+<body>
+    <div class="navbar">
+        <img src="static/Assets/Logo.png" alt="Logo 1" class="logo">
+        <div class="nav-tabs">
+            <a href="#">Home</a>
+            <a href="http://127.0.0.1:4000/" >Stress Detection</a>
+      
+            <a href="http://127.0.0.1:3998/">Document Reconstruction</a>
+            <a href="file:///Users/dhanu/Desktop/merg/flask/ui/login.html">Login</a>
+            <a href="http://127.0.0.1:5999">Chat bot</a>
+        </div>
+    </div>
+
+     <br><hr>
+ 
+
+<div class="container">
+    <style>
+        /* Style for the container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Style for the heading */
+        .container h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Style for the form */
+        .container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Style for the file input */
+        .container input[type="file"] {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Style for the submit button */
+        .container input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Style for the result sections */
+        .container .result {
+            margin-top: 20px;
+        }
+
+        /* Style for the result headings */
+        .container .result h2 {
+            font-size: 20px;
+        }
+
+        /* Style for the OCR and corrected result text */
+        .container pre {
+            font-size: 16px;
+            background-color: #fff;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            white-space: pre-wrap;
+        }
+    </style>
+
+    <h1>OCR and Text Correction</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*">
+        <input type="submit" value="Upload and Process">
+    </form>
+    
+   <div class="result">
+        <h2>OCR Result:</h2>
+        <pre id="ocrResult">{{ ocr_result }}</pre>
+        <button id="downloadOcrPdf">Download OCR Result as PDF</button>
+    </div>
+
+    <div class="result">
+        <h2>Corrected Result:</h2>
+        <pre id="correctedResult">{{ corrected_result }}</pre>
+        <button id="downloadCorrectedPdf">Download Corrected Result as PDF</button>
+    </div>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script>
+        function downloadPdf(id, fileName) {
+            const element = document.getElementById(id);
+
+            html2pdf()
+                .from(element)
+                .save(fileName + '.pdf');
+        }
+
+        document.getElementById('downloadOcrPdf').addEventListener('click', function () {
+            downloadPdf('ocrResult', 'OCR_Result');
+        });
+
+        document.getElementById('downloadCorrectedPdf').addEventListener('click', function () {
+            downloadPdf('correctedResult', 'Corrected_Result');
+        });
+    </script>
+</div>
+
+     </div>
+
+</body>
+ 
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OCR and Text Correction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>OCR and Text Correction</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*">
+            <input type="submit" value="Upload and Process">
+        </form>
+        
+        <div class="result">
+            <h2>OCR Result:</h2>
+            <pre>{{ ocr_result }}</pre>
+        </div>
+
+        <div class="result">
+            <h2>Corrected Result:</h2>
+            <pre>{{ corrected_result }}</pre>
+        </div>
+    </div>
+</body>
+</html>
